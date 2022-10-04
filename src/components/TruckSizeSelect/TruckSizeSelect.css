@@ -1,0 +1,27 @@
+.truck-alternative {
+    width: 150px;
+    height: 150px;
+    border: 2px solid blue;
+    border-radius: 20px;
+    text-align: center;
+    background-color: #efefff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.selected {
+    border: 2px solid red;
+    background-color: #ffefef;
+}
+
+.truck-size-container {
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+    justify-content: space-around;
+    align-items: center;
+
+}
