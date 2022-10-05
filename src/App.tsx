@@ -2,15 +2,17 @@ import React from 'react';
 import './App.scss';
 import InputsComponent from './components/InputsComponent';
 import OutputComponent from './components/OutputComponent';
+import { useText } from './contexts/TextContext';
 // import Inputs from './models/Inputs';
 
 function App() {
   // const [inputs, setInputs] = React.useState<Inputs>({} as any);
+  const text = useText();
 
   return (
     <div className='container'>
-      <h1>Total Cost of Ownership</h1>
-      <p>Great thinkgs to come!</p>
+      <h1>{text.header}</h1>
+      <p>{text.mainDescription}</p>
 
       <InputsComponent />
       <OutputComponent />
