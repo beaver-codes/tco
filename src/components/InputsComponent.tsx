@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import TruckSizeSelect from './TruckSizeSelect'
 import Inputs from '../models/Inputs';
 
