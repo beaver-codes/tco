@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
-import { propTypes } from 'react-bootstrap/esm/Image';
+import { useText } from '../../contexts/TextContext';
 import Inputs from "../../models/Inputs";
 import "./TruckSizeSelect.css"
 
@@ -13,7 +11,7 @@ interface Props {
 }
 
 const TruckSizeSelect = ({ onUpdate, truckSize }: Props) => {
-
+    const text = useText()
     return (
         <div className="truck-size-container">
             {sizes.map((size: Inputs["truckSize"]) => {
@@ -23,7 +21,7 @@ const TruckSizeSelect = ({ onUpdate, truckSize }: Props) => {
                         onClick={() => onUpdate(size)}
                     ><div>
 
-                            {size} Truck
+                            {text.truckSelect[size]}
                         </div>
                     </div>
                 )

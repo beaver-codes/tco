@@ -11,6 +11,12 @@ const text = {
     fossilDiesel: 'Fossil diesel',
     fossilFree: 'Fossil free, HVO',
     electric: 'Electric',
+
+    truckSelect: {
+        small: 'Small truck',
+        medium: 'Medium truck',
+        large: 'Large truck'
+    }
 };
 
 export default text;
