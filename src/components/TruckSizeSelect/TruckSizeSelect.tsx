@@ -14,9 +14,6 @@ const TruckSizeSelect = ({ onUpdate }: Props) => {
     const [selectedSize, setSelectedSize] = useState<Inputs["truckSize"]>('small');
 
     const updateTruckSelect = (truckSize: Inputs["truckSize"]) => {
-
-        // const truckAlternatives = document.querySelector(".truckAlternative"))
-
         setSelectedSize(truckSize);
         onUpdate(truckSize)
     }
