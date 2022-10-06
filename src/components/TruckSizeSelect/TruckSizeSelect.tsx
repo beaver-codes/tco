@@ -1,3 +1,4 @@
+import React from 'react';
 import { useText } from '../../contexts/TextContext';
 import Inputs from "../../models/Inputs";
 import "./TruckSizeSelect.css"
