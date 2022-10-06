@@ -3,10 +3,10 @@ import './App.scss';
 import InputsComponent from './components/InputsComponent';
 import OutputComponent from './components/OutputComponent';
 import { useText } from './contexts/TextContext';
-// import Inputs from './models/Inputs';
+import Inputs from './models/Inputs';
 
 function App() {
-  // const [inputs, setInputs] = React.useState<Inputs>({} as any);
+  const [inputs, setInputs] = React.useState<Inputs>({ truckSize: 'small' });
   const text = useText();
 
   return (
@@ -14,7 +14,7 @@ function App() {
       <h1>{text.header}</h1>
       <p>{text.mainDescription}</p>
 
-      <InputsComponent />
+      <InputsComponent inputState={inputs} setInputState={setInputs} />
       <OutputComponent />
     </div>
   );

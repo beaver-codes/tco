@@ -2,15 +2,19 @@ import React, { useState } from 'react'
 import TruckSizeSelect from './TruckSizeSelect'
 import Inputs from '../models/Inputs';
 
-export default function InputsComponent() {
-  const [truckSize, setTruckSize] = useState<Inputs["truckSize"]>('small')
+interface InputProps {
+  inputState: Inputs;
+  setInputState: (inputs: Inputs) => void;
+}
+
+export default function InputsComponent({ inputState, setInputState }: InputProps) {
 
   return (<div>
     <div>Inputs</div>
     <TruckSizeSelect onUpdate={(size) => {
-      setTruckSize(size);
-    }} truckSize={truckSize} />
-    <div>Selected: {truckSize}</div>
+      setInputState({ ...inputState, truckSize: size })
+    }} truckSize={inputState.truckSize} />
+    <div>Selected: {inputState.truckSize}</div>
   </div>
   )
 }
