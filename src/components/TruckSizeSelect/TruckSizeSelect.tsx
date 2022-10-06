@@ -4,7 +4,8 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 import Inputs from "../../models/Inputs";
 import "./TruckSizeSelect.css"
 
-const sizes: [Inputs["truckSize"], Inputs["truckSize"], Inputs["truckSize"]] = ['small', 'medium', 'large']
+const sizes: Inputs["truckSize"][] = ['small', 'medium', 'large']
+
 
 interface Props {
     onUpdate: (truckSize: Inputs["truckSize"]) => void;
