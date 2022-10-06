@@ -8,9 +8,8 @@ export default function InputsComponent() {
   return (<div>
     <div>Inputs</div>
     <TruckSizeSelect onUpdate={(size) => {
-      console.log(size);
       setTruckSize(size);
-    }} />
+    }} truckSize={truckSize} />
     <div>Selected: {truckSize}</div>
   </div>
   )

@@ -8,26 +8,18 @@ const sizes: [Inputs["truckSize"], Inputs["truckSize"], Inputs["truckSize"]] = [
 
 interface Props {
     onUpdate: (truckSize: Inputs["truckSize"]) => void;
+    truckSize: Inputs["truckSize"];
 }
 
-const TruckSizeSelect = ({ onUpdate }: Props) => {
-    const [selectedSize, setSelectedSize] = useState<Inputs["truckSize"]>('small');
-
-    const updateTruckSelect = (truckSize: Inputs["truckSize"]) => {
-
-        // const truckAlternatives = document.querySelector(".truckAlternative"))
-
-        setSelectedSize(truckSize);
-        onUpdate(truckSize)
-    }
+const TruckSizeSelect = ({ onUpdate, truckSize }: Props) => {
 
     return (
         <div className="truck-size-container">
             {sizes.map((size: Inputs["truckSize"]) => {
                 return (
                     <div
-                        className={`truck-alternative ${selectedSize === size ? "selected" : null}`}
-                        onClick={() => updateTruckSelect(size)}
+                        className={`truck-alternative ${truckSize === size ? "selected" : null}`}
+                        onClick={() => onUpdate(size)}
                     ><div>
 
                             {size} Truck
