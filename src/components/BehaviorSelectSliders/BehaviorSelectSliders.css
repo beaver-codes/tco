@@ -1,0 +1,28 @@
+.slider-container {
+    width: 600px;
+}
+
+.slider-row {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 2rem;
+}
+
+.slider-number-input {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+
+.slider-number-input input {
+    width: 50px;
+    margin-right: 20px;
+    text-align: center;
+}
+
+.slider {
+    flex: 3;
+    /* background-color: green; */
+    margin-bottom: 2rem;
+}
