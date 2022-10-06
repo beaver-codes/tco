@@ -1,11 +1,9 @@
-import React, { useMemo } from "react";
+import React from "react";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import "./BehaviorSelectSliders.css";
 
 import Inputs from "../../models/Inputs";
-import InputsComponent from "../InputsComponent";
-import { arrayBuffer } from "stream/consumers";
 
 type Props = {
     onUpdate: (newState: Inputs) => void;
@@ -19,12 +17,9 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
     Behaviour parameters:
     Depreciation: 5, 6, 7, 8 years
     Days per week: 1-7
-    Distance, Kilometer per working day 10, 20, 30, 40
+    Distance, Kilometer per working day 0-2000
     Hours per working day (drives personal cost, constant that does not affect the climate footprint)
     */
-
-    const marksGenerator = (min: number, max: number) => { }
-
 
     const depreciationMarks = {
         5: { label: 5 },
