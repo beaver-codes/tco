@@ -1,6 +1,5 @@
 import { useText } from '../../contexts/TextContext';
 import Inputs from "../../models/Inputs";
-import { LogarithmicScale } from 'chart.js';
 import "./TruckSizeSelect.css"
 
 const sizes: Inputs["truckSize"][] = ['small', 'medium', 'large']
