@@ -1,7 +1,7 @@
 interface Inputs {
     truckSize: 'small' | 'medium' | 'large';
-    depreciation?: number;
-    distancePerDay?: number[];
+    depreciationPeriod?: number;
+    kilometersPerDay?: number[];
     daysPerWeek?: number;
     hoursPerDay?: number;
 }

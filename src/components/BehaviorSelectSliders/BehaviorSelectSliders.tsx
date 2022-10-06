@@ -2,6 +2,7 @@ import React from "react";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import "./BehaviorSelectSliders.css";
+import { useText } from "../../contexts/TextContext";
 
 import Inputs from "../../models/Inputs";
 
@@ -20,6 +21,8 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
     Distance, Kilometer per working day 0-2000
     Hours per working day (drives personal cost, constant that does not affect the climate footprint)
     */
+
+    const text = useText();
 
     const depreciationMarks = {
         5: { label: 5 },
@@ -61,7 +64,7 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
         onUpdate({ ...inputs, [type]: value })
     }
 
-    const rangeValueUpdate = (value: number | number[], type: "distancePerDay") => {
+    const rangeValueUpdate = (value: number | number[], type: "kilometersPerDay") => {
         if (!Array.isArray(value)) {
             console.error("Range update got value that is not array", value)
             return
@@ -74,15 +77,15 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
     }
 
     return <div className="slider-container">
-        <p>Depreciation period (years)</p>
+        <p>{text.deprecationPeriod}</p>
         <Slider
             min={5} max={8}
             marks={depreciationMarks}
-            value={inputs.depreciation}
+            value={inputs.depreciationPeriod}
             onChange={(value) => singleNumberUpdate(value, "depreciation")}
             className="slider"
         />
-        <p>Days per week</p>
+        <p>{text.daysPerWeek}</p>
         <Slider
             min={1}
             max={7}
@@ -92,7 +95,7 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
             onChange={(value) => singleNumberUpdate(value, "daysPerWeek")}
             className="slider"
         />
-        <p>Hours per day</p>
+        <p>{text.hoursPerDay}</p>
         <Slider
             min={0}
             max={24}
@@ -101,14 +104,14 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
             onChange={(value) => singleNumberUpdate(value, "hoursPerDay")}
             className="slider"
         />
-        <p>Kilometers per working day</p>
+        <p>{text.kilometersPerDay}</p>
         <Slider
             range
             min={0}
             max={2000}
-            value={inputs.distancePerDay}
+            value={inputs.kilometersPerDay}
             marks={distancePerDayMarks}
-            onChange={(value) => rangeValueUpdate(value, "distancePerDay")}
+            onChange={(value) => rangeValueUpdate(value, "kilometersPerDay")}
             step={10}
             className="slider"
         />

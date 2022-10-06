@@ -8,9 +8,9 @@ import Inputs from './models/Inputs';
 function App() {
   const [inputs, setInputs] = React.useState<Inputs>({
     truckSize: 'small',
-    depreciation: 6,
+    depreciationPeriod: 6,
     daysPerWeek: 5,
-    distancePerDay: [40, 500],
+    kilometersPerDay: [40, 500],
     hoursPerDay: 8
   });
   const text = useText();
