@@ -10,6 +10,8 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { useText } from '../contexts/TextContext';
+import Inputs from '../models/Inputs';
+import { calculateInvestment } from '../utils/calculations';
 
 ChartJS.register(
     CategoryScale,
@@ -19,8 +21,11 @@ ChartJS.register(
     Tooltip,
 );
 
+interface Props {
+    inputs: Inputs;
+}
 
-export default function OutputComponent() {
+export default function OutputComponent(props: Props) {
     const text = useText();
     const options: ChartOptions<"bar"> = {
         plugins: {
@@ -65,6 +70,11 @@ export default function OutputComponent() {
                 label: text.overheadCost,
                 data: [10, 10],
                 backgroundColor: 'rgb(53, 162, 235)',
+            },
+            {
+                label: text.investment,
+                data: calculateInvestment(props.inputs),
+                backgroundColor: '#3ea54a',
             },
         ],
     };

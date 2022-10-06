@@ -18,10 +18,11 @@ function App() {
   return (
     <div className='container'>
       <h1>{text.header}</h1>
-      <p>{text.mainDescription}</p>
+      <p className='mb-5'>{text.mainDescription}</p>
 
       <InputsComponent inputState={inputs} setInputState={setInputs} />
-      <OutputComponent />
+      <hr className='mt-5 mb-5' />
+      <OutputComponent inputs={inputs} />
     </div>
   );
 }

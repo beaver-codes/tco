@@ -17,7 +17,7 @@ const TruckSizeSelect = ({ onUpdate, truckSize }: Props) => {
             {sizes.map((size: Inputs["truckSize"]) => {
                 return (
                     <div
-                        className={`truck-alternative ${truckSize === size ? "selected" : null}`}
+                        className={`pointer truck-alternative ${truckSize === size ? "selected" : null}`}
                         onClick={() => onUpdate(size)}
                     ><div>
 

@@ -10,13 +10,11 @@ interface InputProps {
 
 export default function InputsComponent({ inputState, setInputState }: InputProps) {
 
-  return (<div>
-    <div>Inputs</div>
+  return (<div className='center'>
     <TruckSizeSelect onUpdate={(size) => {
       setInputState({ ...inputState, truckSize: size })
     }} truckSize={inputState.truckSize} />
     <BehaviorSelectSliders onUpdate={(newState: Inputs) => { setInputState(newState) }} inputs={inputState} />
-    <div>Selected: {inputState.truckSize}</div>
   </div>
   )
 }
