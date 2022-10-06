@@ -6,6 +6,7 @@ const text = {
     serviceCost: 'Service cost',
     energyCost: 'Energy cost',
     overheadCost: 'Overhead cost',
+    investment: 'Investment',
 
     bioGas: 'Biogas',
     fossilDiesel: 'Fossil diesel',
