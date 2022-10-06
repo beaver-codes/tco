@@ -20,7 +20,6 @@
 .truck-size-container {
     display: flex;
     flex-direction: row;
-    width: 600px;
     justify-content: space-around;
     align-items: center;
 
