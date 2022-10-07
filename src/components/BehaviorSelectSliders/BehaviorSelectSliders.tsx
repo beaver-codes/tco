@@ -56,7 +56,7 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
         2000: { label: 2000 },
     }
 
-    const singleNumberUpdate = (value: number | number[], type: "depreciation" | "daysPerWeek" | "hoursPerDay") => {
+    const singleNumberUpdate = (value: number | number[], type: "depreciationPeriod" | "daysPerWeek" | "hoursPerDay") => {
         if (typeof value !== "number") {
             console.log("Received multiple values from slider:", value)
             return
@@ -82,7 +82,7 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
             min={5} max={8}
             marks={depreciationMarks}
             value={inputs.depreciationPeriod}
-            onChange={(value) => singleNumberUpdate(value, "depreciation")}
+            onChange={(value) => singleNumberUpdate(value, "depreciationPeriod")}
             className="slider"
         />
         <p>{text.daysPerWeek}</p>
