@@ -1,7 +1,6 @@
 .slider-container {
     display: flex;
     flex-direction: column;
-    max-width: 600px;
 }
 
 .slider-row {
