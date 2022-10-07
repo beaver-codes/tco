@@ -14,7 +14,7 @@ export default function InputsComponent({ inputState, setInputState }: InputProp
     <TruckSizeSelect onUpdate={(size) => {
       setInputState({ ...inputState, truckSize: size })
     }} truckSize={inputState.truckSize} />
-    <BehaviorSelectSliders onUpdate={(newState: Inputs) => { setInputState(newState) }} inputs={inputState} />
+    <BehaviorSelectSliders onUpdate={setInputState} inputs={inputState} />
   </div>
   )
 }
