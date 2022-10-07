@@ -13,7 +13,7 @@ interface Props {
 const TruckSizeSelect = ({ onUpdate, truckSize }: Props) => {
     const text = useText()
     return (
-        <div className="truck-size-container">
+        <div className="d-flex flex-row justify-content-center mb-4">
             {sizes.map((size: Inputs["truckSize"]) => {
                 return (
                     <div
