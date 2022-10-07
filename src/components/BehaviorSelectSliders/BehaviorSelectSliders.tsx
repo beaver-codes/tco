@@ -83,7 +83,7 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
             marks={depreciationMarks}
             value={inputs.depreciationPeriod}
             onChange={(value) => singleNumberUpdate(value, "depreciationPeriod")}
-            className="slider"
+            className="mb-4"
         />
         <p>{text.daysPerWeek}</p>
         <Slider
@@ -93,7 +93,7 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
             value={inputs.daysPerWeek}
             marks={daysPerWeekMarks}
             onChange={(value) => singleNumberUpdate(value, "daysPerWeek")}
-            className="slider"
+            className="mb-4"
         />
         <p>{text.hoursPerDay}</p>
         <Slider
@@ -102,7 +102,7 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
             value={inputs.hoursPerDay}
             marks={hoursPerDayMarks}
             onChange={(value) => singleNumberUpdate(value, "hoursPerDay")}
-            className="slider"
+            className="mb-4"
         />
         <p>{text.kilometersPerDay}</p>
         <Slider
@@ -113,7 +113,7 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
             marks={distancePerDayMarks}
             onChange={(value) => rangeValueUpdate(value, "kilometersPerDay")}
             step={10}
-            className="slider"
+            className="mb-4"
         />
     </div>
 }
