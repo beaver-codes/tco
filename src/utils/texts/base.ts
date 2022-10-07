@@ -19,7 +19,7 @@ const text = {
         large: 'Large truck'
     },
 
-    deprecationPeriod: "Deprecation period (years)",
+    depreciationPeriod: "Deprecation period (years)",
     daysPerWeek: "Days per week",
     hoursPerDay: "Hours per day",
     kilometersPerDay: "Kilometers per working day",

@@ -77,7 +77,7 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
     }
 
     return <div className="slider-container">
-        <p>{text.deprecationPeriod}</p>
+        <p>{text.depreciationPeriod}</p>
         <Slider
             min={5} max={8}
             marks={depreciationMarks}
