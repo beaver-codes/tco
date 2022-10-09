@@ -1,14 +1,29 @@
-import Inputs from "../models/Inputs";
+import CalculationResult from "../models/CalculationResult";
+import Inputs, { TruckSize } from "../models/Inputs";
+import TruckType from "../models/truckType";
 
-export const calculateInvestment = (inputs: Inputs): number[] => {
+const BASE_INVESTMENT: Record<TruckSize, number> = {
+    small: 1750000,
+    medium: 2200000,
+    large: 3500000,
+}
+const BIOGAS_INVETMENT_SURCHARGE = 250000;
+const ELECTRIC_INVESTMENT: Record<TruckSize, number> = {
+    small: 3600000,
+    medium: 4000000,
+    large: 5200000,
+};
+
+
+export const calculateInvestment = (inputs: Inputs): CalculationResult => {
     const { truckSize } = inputs;
-    let investments = [10, 10, 10, 10];
+    const baseInvetment = BASE_INVESTMENT[truckSize];
+    const electricInvestment = ELECTRIC_INVESTMENT[truckSize];
 
-    if (truckSize === 'medium') {
-        investments = investments.map(i => i * 1.8);
-    } else if (truckSize === 'large') {
-        investments = investments.map(i => i * 3.5);
-    }
-
-    return investments;
+    return {
+        [TruckType.BIO_GAS]: baseInvetment + BIOGAS_INVETMENT_SURCHARGE,
+        [TruckType.FOSSIL_DIESEL]: baseInvetment,
+        [TruckType.FOSSIL_FREE]: baseInvetment,
+        [TruckType.ELECTRIC]: electricInvestment,
+    };
 }
