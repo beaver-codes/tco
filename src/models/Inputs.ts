@@ -1,5 +1,7 @@
+export type TruckSize = 'small' | 'medium' | 'large';
+
 interface Inputs {
-    truckSize: 'small' | 'medium' | 'large';
+    truckSize: TruckSize;
     depreciationPeriod: number;
     kilometersPerDay: number[];
     daysPerWeek: number;

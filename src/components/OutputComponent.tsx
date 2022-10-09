@@ -12,6 +12,8 @@ import { Bar } from 'react-chartjs-2';
 import { useText } from '../contexts/TextContext';
 import Inputs from '../models/Inputs';
 import { calculateInvestment } from '../utils/calculations';
+import TruckType from '../models/truckType';
+import CalculationResult from '../models/CalculationResult';
 
 ChartJS.register(
     CategoryScale,
@@ -24,6 +26,8 @@ ChartJS.register(
 interface Props {
     inputs: Inputs;
 }
+
+const ORDER = [TruckType.FOSSIL_DIESEL, TruckType.FOSSIL_FREE, TruckType.BIO_GAS, TruckType.ELECTRIC];
 
 export default function OutputComponent(props: Props) {
     const text = useText();
@@ -46,7 +50,14 @@ export default function OutputComponent(props: Props) {
         indexAxis: "y",
     };
 
-    const labels = [text.bioGas, text.fossilDiesel, text.fossilFree, text.electric];
+    const labelDefinitions = {
+        [TruckType.BIO_GAS]: text.bioGas,
+        [TruckType.FOSSIL_DIESEL]: text.fossilDiesel,
+        [TruckType.FOSSIL_FREE]: text.fossilFree,
+        [TruckType.ELECTRIC]: text.electric,
+    }
+    const labels = ORDER.map((truckType) => labelDefinitions[truckType]);
+    const orderCalculationResolt = (result: CalculationResult) => ORDER.map((truckType) => result[truckType]);
 
     const data = {
         labels,
@@ -73,7 +84,7 @@ export default function OutputComponent(props: Props) {
             },
             {
                 label: text.investment,
-                data: calculateInvestment(props.inputs),
+                data: orderCalculationResolt(calculateInvestment(props.inputs)),
                 backgroundColor: '#3ea54a',
             },
         ],
