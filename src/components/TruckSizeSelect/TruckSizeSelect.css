@@ -9,18 +9,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 
 .selected {
     border: 2px solid red;
     background-color: #ffefef;
-}
-
-.truck-size-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-
 }

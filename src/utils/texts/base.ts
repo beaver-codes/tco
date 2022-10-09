@@ -17,7 +17,12 @@ const text = {
         small: 'Small truck',
         medium: 'Medium truck',
         large: 'Large truck'
-    }
+    },
+
+    depreciationPeriod: "Deprecation period (years)",
+    daysPerWeek: "Days per week",
+    hoursPerDay: "Hours per day",
+    kilometersPerDay: "Kilometers per working day",
 };
 
 export default text;
