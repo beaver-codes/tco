@@ -1,18 +1,46 @@
 import React from "react";
-import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import "./BehaviorSelectSliders.css";
 import { useText } from "../../contexts/TextContext";
 
 import Inputs from "../../models/Inputs";
-import SliderRow from "./SliderRow";
-import { markAsUntransferable } from "worker_threads";
+import SliderRow, { SliderRowProps } from "./SliderRow";
+
+type SliderInputs = Pick<Inputs, 'depreciationPeriod' | 'daysPerWeek' | 'hoursPerDay' | 'kilometersPerDay'>
 
 type Props = {
     onUpdate: (newState: Inputs) => void;
     inputs: Inputs;
 }
-console.log()
+
+const settings: (Pick<SliderRowProps, 'min' | 'max' | 'markNumbers' | 'range' | 'step'> & { inputName: keyof SliderInputs })[] = [
+    {
+        inputName: "depreciationPeriod",
+        min: 5,
+        max: 8,
+        markNumbers: [5, 6, 7, 8],
+    },
+    {
+        inputName: "daysPerWeek",
+        min: 1,
+        max: 7,
+        markNumbers: [1, 2, 3, 4, 5, 6, 7],
+    },
+    {
+        inputName: "hoursPerDay",
+        min: 0,
+        max: 24,
+        markNumbers: [0, 6, 12, 18, 24],
+    },
+    {
+        inputName: "kilometersPerDay",
+        range: true,
+        min: 0,
+        max: 2000,
+        step: 10,
+        markNumbers: [0, 500, 1000, 1500, 2000],
+    }
+]
 
 const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
 
@@ -25,34 +53,10 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
     Hours per working day (drives personal cost, constant that does not affect the climate footprint)
     */
 
-    console.log(Object.keys(inputs))
-
-    const inputKeys = Object.keys(inputs)
-
-
     const text = useText();
 
-    const settings = {
-        deprecationPeriod: {
-            min: 5,
-            max: 8,
-            title: text.depreciationPeriod,
-            value: inputs.depreciationPeriod,
-            markNumbers: [5, 6, 7, 8],
-        },
-    }
-
-    const marksArrays = {
-        depreciationPeriod: [5, 6, 7, 8],
-        daysPerWeek: [1, 2, 3, 4, 5, 6, 7],
-        hoursPerDay: [0, 6, 12, 18, 24],
-        kilometersPerDay: [0, 500, 1000, 1500, 2000],
-    }
-
-    const singleNumberUpdate = (value: number | number[], forInput: string) => {
-        if (!(inputKeys.includes(forInput))) {
-            console.error(`${forInput} not allowed input type to update`)
-        }
+    const singleNumberUpdate = (value: number | number[], forInput: keyof
+        SliderInputs) => {
         if (typeof value !== "number") {
             console.log("Received multiple values from slider:", value)
             return
@@ -60,7 +64,11 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
         onUpdate({ ...inputs, [forInput]: value })
     }
 
-    const rangeValueUpdate = (value: number | number[], type: "kilometersPerDay") => {
+    const singleValueCurry = (forInput: keyof SliderInputs) => {
+        return (value: number | number[]) => singleNumberUpdate(value, forInput)
+    }
+
+    const rangeValueUpdate = (value: number | number[], type: keyof SliderInputs) => {
         if (!Array.isArray(value)) {
             console.error("Range update got value that is not array", value)
             return
@@ -73,42 +81,19 @@ const BehaviorSelectSliders = ({ onUpdate, inputs }: Props) => {
     }
 
     return <div className="slider-container">
-        <SliderRow
-            min={5} max={8}
-            value={inputs.depreciationPeriod}
-            title={text.depreciationPeriod}
-            onChange={(value) => singleNumberUpdate(value, "depreciationPeriod")}
-            markNumbers={marksArrays.depreciationPeriod}
-        />
-        <SliderRow
-            min={1} max={7}
-            title={text.daysPerWeek}
-            value={inputs.daysPerWeek}
-            onChange={(value) => singleNumberUpdate(value, "daysPerWeek")}
-            markNumbers={marksArrays.daysPerWeek}
-        />
-        <SliderRow
-            min={0} max={24}
-            title={text.hoursPerDay}
-            value={inputs.hoursPerDay}
-            markNumbers={marksArrays.hoursPerDay}
-            onChange={(value) => singleNumberUpdate(value, "hoursPerDay")}
-        />
-        <p>{text.kilometersPerDay}</p>
-        <SliderRow
-            range
-            min={0}
-            max={2000}
-            title={text.kilometersPerDay}
-            value={inputs.kilometersPerDay}
-            markNumbers={marksArrays.kilometersPerDay}
-            onChange={(value) => rangeValueUpdate(value, "kilometersPerDay")}
-            step={10}
-        />
-        <SliderRow
-            {...settings.deprecationPeriod}
-            onChange={(value) => singleNumberUpdate(value, "deprecationPeriod")}
-        />
+        {settings.map((s) => {
+            const { inputName } = s;
+            return <SliderRow
+                key={inputName}
+                {...s}
+                title={text.sliderTitles[inputName]}
+                value={inputs[inputName]}
+                onChange={s.range
+                    ? (value) => rangeValueUpdate(value, inputName)
+                    : singleValueCurry(inputName)
+                }
+            />
+        })}
     </div>
 }
 

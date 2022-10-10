@@ -19,10 +19,14 @@ const text = {
         large: 'Large truck'
     },
 
-    depreciationPeriod: "Deprecation period (years)",
-    daysPerWeek: "Days per week",
-    hoursPerDay: "Hours per day",
-    kilometersPerDay: "Kilometers per working day",
+    sliderTitles: {
+        depreciationPeriod: "Deprecation period (years)",
+        daysPerWeek: "Days per week",
+        hoursPerDay: "Hours per day",
+        kilometersPerDay: "Kilometers per working day",
+    }
+
+
 };
 
 export default text;
