@@ -11,7 +11,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import { useText } from '../contexts/TextContext';
 import Inputs from '../models/Inputs';
-import { calculateInvestment } from '../utils/calculations';
+import { calculateInvestment, calculatePersonal } from '../utils/calculations';
 import TruckType from '../models/truckType';
 import CalculationResult from '../models/CalculationResult';
 
@@ -57,14 +57,14 @@ export default function OutputComponent(props: Props) {
         [TruckType.ELECTRIC]: text.electric,
     }
     const labels = ORDER.map((truckType) => labelDefinitions[truckType]);
-    const orderCalculationResolt = (result: CalculationResult) => ORDER.map((truckType) => result[truckType]);
+    const orderAndFormatCalculationResult = (result: CalculationResult) => ORDER.map((truckType) => Math.round(result[truckType]));
 
     const data = {
         labels,
         datasets: [
             {
                 label: text.personalCost,
-                data: [10, 20, 20, 30],
+                data: orderAndFormatCalculationResult(calculatePersonal(props.inputs)),
                 backgroundColor: 'rgb(255, 99, 132)',
             },
             {
@@ -84,7 +84,7 @@ export default function OutputComponent(props: Props) {
             },
             {
                 label: text.investment,
-                data: orderCalculationResolt(calculateInvestment(props.inputs)),
+                data: orderAndFormatCalculationResult(calculateInvestment(props.inputs)),
                 backgroundColor: '#3ea54a',
             },
         ],
