@@ -1,5 +1,5 @@
 const text = {
-    header: 'Total Cost of Ownership',
+    header: 'Total Cost of Ownership per Year',
     mainDescription: 'The absolutelly great things to come!',
 
     personalCost: 'Personal cost',
