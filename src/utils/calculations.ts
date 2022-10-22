@@ -45,3 +45,55 @@ export const calculatePersonal = (inputs: Inputs): CalculationResult => {
         [TruckType.ELECTRIC]: yearlyRate,
     };
 }
+
+const DAYLY_DISTANCE: Record<TruckSize, number> = {
+    small: 100,
+    medium: 200,
+    large: 500,
+}
+
+const BASE_FUEL_CONSUMPTION: Record<TruckSize, number> = {
+    small: 3.4,
+    medium: 3.9,
+    large: 4.3,
+}
+const BIO_GAS_FUEL_CONSUMPTION: Record<TruckSize, number> = {
+    small: 2.1,
+    medium: 2.4,
+    large: 2.7,
+}
+const ELECTRIC_FUEL_CONSUMPTION: Record<TruckSize, number> = {
+    small: 13,
+    medium: 16,
+    large: 22,
+}
+
+const PRICE_PER_UNIT: Record<TruckType, number> = {
+    [TruckType.BIO_GAS]: 18.8,
+    [TruckType.FOSSIL_DIESEL]: 22.5,
+    [TruckType.FOSSIL_FREE]: 25.8,
+    [TruckType.ELECTRIC]: 2.4,
+}
+
+const _calculateEnergyPerType = (inputs: Inputs, type: TruckType): number => {
+    const yearlyDistance = DAYLY_DISTANCE[inputs.truckSize] * WORK_DAYS;
+    let consumptionPer100 = BASE_FUEL_CONSUMPTION[inputs.truckSize];
+    if (type === TruckType.BIO_GAS) {
+        consumptionPer100 = BIO_GAS_FUEL_CONSUMPTION[inputs.truckSize];
+    } else if (type === TruckType.ELECTRIC) {
+        consumptionPer100 = ELECTRIC_FUEL_CONSUMPTION[inputs.truckSize];
+    }
+    const yearlyConsumption = (yearlyDistance / 100) * consumptionPer100;
+
+    console.log(`(${yearlyDistance} / 100) * ${consumptionPer100}`, yearlyConsumption);
+    return yearlyConsumption * PRICE_PER_UNIT[type];
+}
+
+export const calculateEnergy = (inputs: Inputs): CalculationResult => {
+    return {
+        [TruckType.BIO_GAS]: _calculateEnergyPerType(inputs, TruckType.BIO_GAS),
+        [TruckType.FOSSIL_DIESEL]: _calculateEnergyPerType(inputs, TruckType.FOSSIL_DIESEL),
+        [TruckType.FOSSIL_FREE]: _calculateEnergyPerType(inputs, TruckType.FOSSIL_FREE),
+        [TruckType.ELECTRIC]: _calculateEnergyPerType(inputs, TruckType.ELECTRIC),
+    };
+}

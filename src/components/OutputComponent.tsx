@@ -11,7 +11,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import { useText } from '../contexts/TextContext';
 import Inputs from '../models/Inputs';
-import { calculateInvestment, calculatePersonal } from '../utils/calculations';
+import { calculateEnergy, calculateInvestment, calculatePersonal } from '../utils/calculations';
 import TruckType from '../models/truckType';
 import CalculationResult from '../models/CalculationResult';
 
@@ -74,7 +74,7 @@ export default function OutputComponent(props: Props) {
             },
             {
                 label: text.energyCost,
-                data: [10, 10],
+                data: orderAndFormatCalculationResult(calculateEnergy(props.inputs)),
                 backgroundColor: 'rgb(53, 162, 235)',
             },
             {
