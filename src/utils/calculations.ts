@@ -97,3 +97,47 @@ export const calculateEnergy = (inputs: Inputs): CalculationResult => {
         [TruckType.ELECTRIC]: _calculateEnergyPerType(inputs, TruckType.ELECTRIC),
     };
 }
+
+
+const BASE_TIRE_COST_PER_10: Record<TruckSize, number> = {
+    'small': 3.85,
+    'medium': 4.4,
+    'large': 5.9,
+}
+const ELECTRIC_TIRE_SURCHARGE = 0.2;
+
+const BASE_SERVICE_COST_PER_10: Record<TruckSize, number> = {
+    'small': 16,
+    'medium': 10.1,
+    'large': 7.15,
+}
+const BIOGAS_SERVICE_SURCHARGE = 1;
+const ELECTRIC_SERVICE_COST_PER_10: Record<TruckSize, number> = {
+    'small': 10.5,
+    'medium': 6.6,
+    'large': 4.65,
+};
+
+const _calculateServicePerType = (inputs: Inputs, type: TruckType): number => {
+    const tireCost = type === TruckType.ELECTRIC ? BASE_TIRE_COST_PER_10[inputs.truckSize] + ELECTRIC_TIRE_SURCHARGE : BASE_TIRE_COST_PER_10[inputs.truckSize];
+    let serviceCost = BASE_SERVICE_COST_PER_10[inputs.truckSize];
+    if (type === TruckType.BIO_GAS) {
+        serviceCost += BIOGAS_SERVICE_SURCHARGE;
+    } else if (type === TruckType.ELECTRIC) {
+        serviceCost = ELECTRIC_SERVICE_COST_PER_10[inputs.truckSize];
+    }
+
+    const totalCostPer10 = tireCost + serviceCost;
+
+    const yearlyDistance = DAYLY_DISTANCE[inputs.truckSize] * WORK_DAYS;
+
+    return (yearlyDistance / 10) * totalCostPer10;
+}
+export const calculateService = (inputs: Inputs): CalculationResult => {
+    return {
+        [TruckType.BIO_GAS]: _calculateServicePerType(inputs, TruckType.BIO_GAS),
+        [TruckType.FOSSIL_DIESEL]: _calculateServicePerType(inputs, TruckType.FOSSIL_DIESEL),
+        [TruckType.FOSSIL_FREE]: _calculateServicePerType(inputs, TruckType.FOSSIL_FREE),
+        [TruckType.ELECTRIC]: _calculateServicePerType(inputs, TruckType.ELECTRIC),
+    };
+}
