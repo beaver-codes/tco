@@ -53,19 +53,19 @@ const DAYLY_DISTANCE: Record<TruckSize, number> = {
 }
 
 const BASE_FUEL_CONSUMPTION: Record<TruckSize, number> = {
-    small: 3.4,
-    medium: 3.9,
-    large: 4.3,
+    small: 34,
+    medium: 39,
+    large: 43,
 }
 const BIO_GAS_FUEL_CONSUMPTION: Record<TruckSize, number> = {
-    small: 2.1,
-    medium: 2.4,
-    large: 2.7,
+    small: 21,
+    medium: 24,
+    large: 27,
 }
 const ELECTRIC_FUEL_CONSUMPTION: Record<TruckSize, number> = {
-    small: 13,
-    medium: 16,
-    large: 22,
+    small: 130,
+    medium: 160,
+    large: 220,
 }
 
 const PRICE_PER_UNIT: Record<TruckType, number> = {
