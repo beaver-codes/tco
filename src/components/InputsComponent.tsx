@@ -9,7 +9,7 @@ interface InputProps {
 
 export default function InputsComponent({ inputState, setInputState }: InputProps) {
 
-  return (<div className='center max-width-600 m-auto'>
+  return (<div className=''>
     <TruckSizeSelect onUpdate={(size) => {
       setInputState({ ...inputState, truckSize: size })
     }} truckSize={inputState.truckSize} />

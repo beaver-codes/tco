@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import Header from './components/Header';
 import InputsComponent from './components/InputsComponent';
 import OutputComponent from './components/OutputComponent';

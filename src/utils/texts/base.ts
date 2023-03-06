@@ -14,9 +14,11 @@ const text = {
     electric: 'Electric',
 
     truckSelect: {
-        small: 'Small truck',
-        medium: 'Medium truck',
-        large: 'Large truck'
+        truckSize: 'Truck size',
+        truckSizeInfo: 'Select the size of the truck you want to analyze.',
+        small: 'Small',
+        medium: 'Medium',
+        large: 'Large'
     },
 
     depreciationPeriod: "Deprecation period (years)",
