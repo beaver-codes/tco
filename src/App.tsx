@@ -23,7 +23,6 @@ function App() {
       <p className='mb-5'>{text.mainDescription}</p>
 
       <InputsComponent inputState={inputs} setInputState={setInputs} />
-      <hr className='mt-5 mb-5' />
       <OutputComponent inputs={inputs} />
     </div>
   </>
