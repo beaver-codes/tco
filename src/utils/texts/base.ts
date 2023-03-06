@@ -1,6 +1,6 @@
 const text = {
-    header: 'Total Cost of Ownership per Year',
-    mainDescription: 'The absolutelly great things to come!',
+    header: 'Total Cost of Ownership',
+    mainDescription: 'A powerful tool designed specifically for the heavy trucking industry. With a comprehensive analysis of personal, energy, investment, and maintenance costs, this tool enables fleet managers to gain a clear understanding of the true costs associated with owning and operating a trucking fleet. By factoring in all costs.',
 
     personalCost: 'Personal cost',
     serviceCost: 'Service cost',

@@ -6,3 +6,35 @@
 .pointer {
     cursor: pointer;
 }
+
+.header {
+    background-image: url(../public/assets/trucks.png);
+    background-position: center;
+    position: relative;
+
+    background-size: cover;
+    min-height: 460px;
+
+}
+
+.header-title {
+    h1 {
+        background: $light;
+        position: relative;
+        top: -40px;
+        border: 2px solid;
+        box-shadow: 10px 10px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .header {
+        min-height: 200px;
+    }
+}

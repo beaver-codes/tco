@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import Header from './components/Header';
 import InputsComponent from './components/InputsComponent';
 import OutputComponent from './components/OutputComponent';
 import { useText } from './contexts/TextContext';
@@ -15,15 +16,16 @@ function App() {
   });
   const text = useText();
 
-  return (
+  return (<>
+    <Header />
     <div className='container'>
-      <h1>{text.header}</h1>
       <p className='mb-5'>{text.mainDescription}</p>
 
       <InputsComponent inputState={inputs} setInputState={setInputs} />
       <hr className='mt-5 mb-5' />
       <OutputComponent inputs={inputs} />
     </div>
+  </>
   );
 }
 
