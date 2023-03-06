@@ -19,6 +19,42 @@ ChartJS.register(
     CategoryScale,
     LinearScale,
     BarElement,
+    {
+        id: "barImageLabel",
+        afterDraw: function (chart, easing) {
+            // Get the canvas context
+            const ctx = chart.ctx;
+            for (let datasetIx = 0; datasetIx < chart.data.datasets.length; datasetIx++) {
+                const dataset = chart.data.datasets[datasetIx];
+                const meta = chart.getDatasetMeta(datasetIx);
+                const imageSrc = (dataset as any).image;
+                if (!imageSrc) {
+                    continue;
+                }
+
+                for (let barIx = 0; barIx < meta.data.length; barIx++) {
+                    const bar = meta.data[barIx];
+                    const { x, y, width, height } = bar as any;
+
+
+                    // // Create an image object and load the image
+                    const img = new Image();
+                    img.src = imageSrc;
+
+
+                    // const imgX = x / 2 - img.width / 2;
+                    const targetHeight = height * 0.5;
+                    const targetWidth = img.width * targetHeight / img.height;
+                    const imgX = x - (width / 2) - (targetWidth / 2);
+                    const imgY = y - targetHeight / 2;
+
+
+                    // Draw the image on the canvas
+                    ctx.drawImage(img, imgX, imgY, targetWidth, targetHeight);
+                };
+            }
+        }
+    },
     Title,
     Tooltip,
 );
@@ -37,6 +73,9 @@ export default function OutputComponent(props: Props) {
                 display: true,
                 text: text.header,
             },
+            tooltip: {
+                yAlign: "bottom",
+            }
         },
         responsive: true,
         scales: {
@@ -66,29 +105,29 @@ export default function OutputComponent(props: Props) {
                 label: text.personalCost,
                 data: orderAndFormatCalculationResult(calculatePersonal(props.inputs)),
                 backgroundColor: 'rgb(255, 99, 132)',
+                image: '/assets/person-fill.svg',
             },
             {
                 label: text.serviceCost,
                 data: orderAndFormatCalculationResult(calculateService(props.inputs)),
                 backgroundColor: 'rgb(75, 192, 192)',
+                image: '/assets/gear-wide-connected.svg',
             },
             {
                 label: text.energyCost,
                 data: orderAndFormatCalculationResult(calculateEnergy(props.inputs)),
                 backgroundColor: 'rgb(53, 162, 235)',
-            },
-            {
-                label: text.overheadCost,
-                data: [10, 10],
-                backgroundColor: 'rgb(53, 162, 235)',
+                image: '/assets/lightning-charge.svg',
             },
             {
                 label: text.investment,
                 data: orderAndFormatCalculationResult(calculateInvestment(props.inputs)),
                 backgroundColor: '#3ea54a',
+                image: '/assets/cash-stack.svg',
             },
         ],
     };
+
     return (
         <div>
             <Bar data={data} options={options} />

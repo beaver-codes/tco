@@ -85,7 +85,6 @@ const _calculateEnergyPerType = (inputs: Inputs, type: TruckType): number => {
     }
     const yearlyConsumption = (yearlyDistance / 100) * consumptionPer100;
 
-    console.log(`(${yearlyDistance} / 100) * ${consumptionPer100}`, yearlyConsumption);
     return yearlyConsumption * PRICE_PER_UNIT[type];
 }
 
