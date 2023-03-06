@@ -2,6 +2,11 @@
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+#root {
+    font-family: 'Roboto,Helvetica Neue,Noto Sans,Liberation;';
+}
+
+
 // Then add additional custom code here
 .pointer {
     cursor: pointer;
