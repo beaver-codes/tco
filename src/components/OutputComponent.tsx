@@ -69,13 +69,10 @@ export default function OutputComponent(props: Props) {
     const text = useText();
     const options: ChartOptions<"bar"> = {
         plugins: {
-            title: {
-                display: true,
-                text: text.header,
-            },
+
             tooltip: {
                 yAlign: "bottom",
-            }
+            },
         },
         responsive: true,
         scales: {
