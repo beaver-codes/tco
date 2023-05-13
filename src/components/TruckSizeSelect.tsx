@@ -20,12 +20,6 @@ const TruckSizeSelect = ({ onUpdate, truckSize }: Props) => {
     return (
         <div className="">
             <div>
-
-                <label>{text.truckSelect.truckSize}:</label>
-            </div>
-
-            <div className="btn-group " role="group">
-
                 {sizes.map((size: Inputs["truckSize"]) => {
                     return (
                         <React.Fragment key={size}>
@@ -33,18 +27,11 @@ const TruckSizeSelect = ({ onUpdate, truckSize }: Props) => {
                                 checked={truckSize === size}
                                 onChange={() => onUpdate(size)}
                                 id={size} value={size} />
-                            <label className="btn btn-outline-primary" htmlFor={size}>
+                            <label className="btn btn-outline-left-primary me-2 my-1" htmlFor={size}>
                                 {text.truckSelect[size]}  <i className={`ms-2 ${ICONS[size]}`} />
                             </label>
                         </React.Fragment>
-                        // <div
-                        // className={`pointer truck-alternative ${truckSize === size ? "selected" : null}`}
-                        // onClick={() => onUpdate(size)}
-                        // ><div>
 
-                        //         {text.truckSelect[size]}
-                        //     </div>
-                        // </div>
                     )
                 })}
             </div>

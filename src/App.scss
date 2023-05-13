@@ -1,45 +1,63 @@
 // Include any default variable overrides here (though functions won't be available)
+$body-color: #1E1E1E;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+html,
+body,
+#root {
+    min-height: 100%;
+    height: 100%;
+}
 
 #root {
     font-family: 'Roboto,Helvetica Neue,Noto Sans,Liberation;';
 }
 
+p {
+    text-align: justify;
+}
 
-// Then add additional custom code here
+.bold {
+    font-weight: bold;
+}
+
 .pointer {
     cursor: pointer;
 }
 
-.header {
-    background-image: url(../public/assets/trucksAI.png);
-    background-position: center;
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-section {
+    @extend .center;
     position: relative;
-
-    background-size: cover;
-    min-height: 460px;
-
+    z-index: 1;
+    overflow: hidden;
 }
 
-.header-title {
-    h1 {
-        background: $light;
-        position: relative;
-        top: -40px;
-        border: 2px solid;
-        box-shadow: 10px 10px 10px;
-    }
+.left-section:before {
+    @extend .center;
+
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+
+    content: url(../public/assets/trucksAI.png);
+    opacity: 0.2;
 }
 
-@media (max-width: 768px) {
-    .header {
-        min-height: 300px;
-    }
+.btn-outline-left-primary {
+    @extend .btn-outline-primary;
+    background: #E3E3E3;
 }
 
-@media (max-width: 576px) {
-    .header {
-        min-height: 200px;
-    }
+.btn-outline-left-primary:hover {
+    background: #E3E3E3;
 }
